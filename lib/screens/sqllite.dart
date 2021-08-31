@@ -11,6 +11,18 @@ class _SqlLiteScreenState extends State<SqlLiteScreen> {
   List<TaskModel> tasks = [];
   TaskModel taskModel;
   final HelperDb helperDb = HelperDb();
+
+  Future getAllData() async {
+    this.tasks = await helperDb.getAllTask();
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    helperDb.initDatabase();
+    getAllData();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -26,16 +38,20 @@ class _SqlLiteScreenState extends State<SqlLiteScreen> {
           ElevatedButton(
             onPressed: () {
               taskModel = TaskModel(name: _controller.text);
+              _controller.text = "";
               helperDb.insert(taskModel);
             },
             child: Text("Insert"),
           ),
-          ElevatedButton(onPressed: () async{
-            List<TaskModel> list = await helperDb.getAllTask();
-            setState(() {
-              tasks = list;
-            });
-          }, child: Text("Show all tasks"),),
+          ElevatedButton(
+            onPressed: () async {
+              List<TaskModel> list = await helperDb.getAllTask();
+              setState(() {
+                tasks = list;
+              });
+            },
+            child: Text("Show all tasks"),
+          ),
           Expanded(
               child: ListView.separated(
                   itemBuilder: (context, index) {

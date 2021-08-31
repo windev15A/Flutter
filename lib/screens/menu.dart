@@ -33,9 +33,9 @@ class MenuScreen extends StatelessWidget {
                   icon: Icon(Icons.payment_rounded),
                   label: Text("CRUD (Create,Read,Update,Delete) ")),
               ElevatedButton.icon(
-                  onPressed: () {},
-                  icon: Icon(Icons.home),
-                  label: Text("Google maps")),
+                  onPressed: () => Navigator.pushNamed(context, '/sqlLite'),
+                  icon: Icon(Icons.data_saver_off),
+                  label: Text("SqlLite + flutter")),
               ElevatedButton.icon(
                   onPressed: () {},
                   icon: Icon(Icons.laptop_chromebook),

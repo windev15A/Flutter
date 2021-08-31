@@ -7,6 +7,7 @@ import 'package:language/screens/home.dart';
 import 'package:language/screens/mapScreen.dart';
 import 'package:language/screens/menu.dart';
 import 'package:language/screens/set_param.dart';
+import 'package:language/screens/sqllite.dart';
 
 void main() {
   runApp(MyApp());
@@ -41,11 +42,12 @@ class MyApp extends StatelessWidget {
         '/': (context) {
           return HeroList(title: AppLocalizations.of(context).appTitle);
         },
+        '/home' : (context) => Home(),
         '/menu' : (context) => MenuScreen(),
         '/settings' : (context) => Settings(),
         '/maps' : (context) => MapScreen(),
-        '/test' : (context) => DetailProduct(),
-        '/home' : (context) => Home()
+        '/detailProduct' : (context) => DetailProduct(),
+        '/sqlLite' : (context) => SqlLiteScreen(),
 
       },
 

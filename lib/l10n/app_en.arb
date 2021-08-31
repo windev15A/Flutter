@@ -1,0 +1,24 @@
+{
+  "appTitle": "Heroes of Computer Science",
+  "openSettings": "Open Settings",
+  "wozniakBio": "Developed the {appleOne} & {appleTwo} microcomputers.",
+  "@wozniakBio": {
+    "placeholders": {
+        "appleOne": {
+            "type": "String",
+            "example": "Apple I"
+        },
+        "appleTwo": {}
+    }
+  },
+  "heroCount": "{count, plural, =0{No heroes yet} =1 {1 hero} other{{count} heroes}}",
+  "@heroCount": {
+    "placeholders": {
+        "count": {}
+    }
+  },
+  "age": "Age",
+  "name": "name",
+  "menu": "Menu",
+  "question": "Are you sure to delete this product ?"
+}

@@ -1,0 +1,10 @@
+{
+  "appTitle": "Heros de computer fr",
+  "openSettings": "Ouvrire les paramétres",
+  "wozniakBio": "développé les micro-ordinateurs {appleOne} & {appleTwo}.",
+  "heroCount": "{count, plural, =0{aucune heros} =1 {1 hero} other{{count} heros fr}}",
+  "age": "Age",
+  "name": "Nom",
+  "menu": "Menu principale",
+  "question":"Voulez-vous vraiment supprimer ce produit ?"
+}

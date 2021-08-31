@@ -9,9 +9,20 @@ class TaskModel {
   final int id;
   final String name;
 
-  TaskModel({this.id, this.name});
+  TaskModel({
+    this.id,
+    this.name,
+  });
 
-  Map<String, dynamic> toMap() => {columnId: id, columnName: name};
+  factory TaskModel.fromJson(Map<String, dynamic> json) => TaskModel(
+    id: json["id"],
+    name: json["name"],
+  );
+
+  Map<String, dynamic> toJson() => {
+    "id": id,
+    "name": name,
+  };
 }
 
 class HelperDb {
@@ -33,7 +44,7 @@ class HelperDb {
 
   Future<void> insert(TaskModel task) async {
     try {
-      db.insert(tableName, task.toMap(),
+      db.insert(tableName, task.toJson(),
           conflictAlgorithm: ConflictAlgorithm.replace);
     } catch (e) {
       print(e);

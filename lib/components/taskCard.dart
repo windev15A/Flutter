@@ -1,18 +1,18 @@
 import 'package:flutter/material.dart';
 
-class TaskWidget extends StatefulWidget {
+class TaskCard extends StatefulWidget {
   String id;
   String name;
   Function deleteTask;
   Function displayTask;
 
-  TaskWidget({this.id, this.name, this.deleteTask, this.displayTask});
+  TaskCard({this.id, this.name, this.deleteTask, this.displayTask});
 
   @override
-  _TaskWidgetState createState() => _TaskWidgetState();
+  _TaskCardState createState() => _TaskCardState();
 }
 
-class _TaskWidgetState extends State<TaskWidget> {
+class _TaskCardState extends State<TaskCard> {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(

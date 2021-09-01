@@ -1,7 +1,7 @@
 
 class TaskModel {
-  final int id;
-  final String name;
+  int id;
+ String name;
 
   TaskModel({
     this.id,

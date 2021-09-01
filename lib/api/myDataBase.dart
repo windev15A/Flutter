@@ -1,3 +1,4 @@
+
 import 'package:language/models/taskModel.dart';
 import 'package:sqflite/sqflite.dart';
 import 'package:path/path.dart';
@@ -33,6 +34,28 @@ class DB {
       db.close();
     }
 
+  }
+
+  Future<void> update(TaskModel task, int id) async {
+    final Database db = await initDatabase();
+    try {
+      db.update(tableName, task.toMap(), where: "$columnId=?", whereArgs:[id]);
+    } catch (e) {
+      print(e);
+    }finally{
+      db.close();
+    }
+  }
+
+  Future<void> delete(int id) async {
+    final Database db = await initDatabase();
+    try {
+      db.delete(tableName, where: "$columnId=?", whereArgs:[id]);
+    } catch (e) {
+      print(e);
+    }finally{
+      db.close();
+    }
   }
 
   Future<List<TaskModel>> getAllTask() async {

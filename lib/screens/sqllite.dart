@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:language/api/myDataBase.dart';
+import 'package:language/components/taskwidget.dart';
 import 'package:language/models/taskModel.dart';
 
 class SqlLiteScreen extends StatefulWidget {
@@ -18,6 +19,7 @@ class _SqlLiteScreenState extends State<SqlLiteScreen> {
     super.initState();
     db = DB();
     getAllData();
+    print("Debut ${tasks.length}");
   }
 
   Future<void> getAllData() async {
@@ -34,35 +36,65 @@ class _SqlLiteScreenState extends State<SqlLiteScreen> {
         title: Text("SqlLite + flutter"),
       ),
       body: Container(
+          margin: EdgeInsets.symmetric(horizontal: 10, vertical: 15),
           child: Column(
-        children: [
-          TextField(
-            controller: _controller,
-          ),
-          ElevatedButton(
-            onPressed: () {
-              taskModel = TaskModel(name: _controller.text);
-              db.insert(taskModel);
-              _controller.text = "";
-            },
-            child: Text("Insert"),
-          ),
-          ElevatedButton(
-            onPressed: getAllData,
-            child: Text("Show all tasks"),
-          ),
-          Expanded(
-              child: ListView.separated(
-                  itemBuilder: (context, index) {
-                    return ListTile(
-                      leading: Text("${tasks[index].id}"),
-                      subtitle: Text("${tasks[index].name}"),
-                    );
-                  },
-                  separatorBuilder: (context, index) => Divider(),
-                  itemCount: tasks.length))
-        ],
-      )),
+            children: [
+              Row(
+                children: [
+                  Expanded(
+                    child: TextField(
+                      controller: _controller,
+                      style:
+                          TextStyle(fontWeight: FontWeight.w600, fontSize: 20),
+                      decoration: InputDecoration(
+                        icon: Icon(Icons.task),
+                        hintText: "New task",
+                        border: OutlineInputBorder(),
+                      ),
+                    ),
+                  ),
+                  Container(
+                    padding: EdgeInsets.only(top: 8, bottom: 8),
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(10),
+                      color: Colors.red,
+                    ),
+                    child: ElevatedButton(
+                      onPressed: () {
+                        taskModel = TaskModel(name: _controller.text);
+                        db.insert(taskModel);
+                        getAllData();
+                        print(tasks.length);
+                        _controller.text = "";
+                      },
+                      child: Icon(
+                        Icons.add,
+                        size: 35,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+              Text(
+                "List tasks",
+                style: TextStyle(fontSize: 34, color: Colors.grey),
+              ),
+              Expanded(
+                  child: ListView.builder(
+                itemBuilder: (BuildContext context, index) {
+                  return TaskWidget(
+                    id: tasks[index].id.toString(),
+                    name: tasks[index].name,
+                    deleteTask: ()=> print("Delete"),
+                    displayTask: (){
+                      _controller.text = tasks[index].name;
+                    },
+                  );
+                },
+                itemCount: tasks.length,
+              ))
+            ],
+          )),
     );
   }
 }

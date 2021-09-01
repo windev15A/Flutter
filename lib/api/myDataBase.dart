@@ -29,12 +29,16 @@ class DB {
       db.insert(tableName, task.toMap());
     } catch (e) {
       print(e);
+    }finally{
+      db.close();
     }
+
   }
 
   Future<List<TaskModel>> getAllTask() async {
     final Database db = await initDatabase();
     final List<Map<String, dynamic>> tasks = await db.query(tableName);
+
     return tasks.map((e) => TaskModel.fromMap(e)).toList();
   }
 }

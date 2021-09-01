@@ -1,7 +1,4 @@
 
-
-
-
 class TaskModel {
   final int id;
   final String name;

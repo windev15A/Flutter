@@ -6,7 +6,7 @@ import 'package:flutter/services.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:language/api/my_api.dart';
 import 'package:language/models/product.dart';
-import 'package:language/screens/customDialogue.dart';
+import 'package:language/components/customDialogue.dart';
 
 class DetailProduct extends StatefulWidget {
   @override

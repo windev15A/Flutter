@@ -2,10 +2,10 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:language/api/my_api.dart';
 import 'package:language/models/product.dart';
-import 'package:language/screens/customDialogue.dart';
+import 'package:language/components/customDialogue.dart';
 import 'package:language/screens/detailProduct.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:language/screens/hero_list.dart';
+
 
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 

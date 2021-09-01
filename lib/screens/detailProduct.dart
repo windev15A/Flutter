@@ -19,8 +19,8 @@ class _DetailProductState extends State<DetailProduct> {
   final _slugController = TextEditingController();
   final _descriptionController = TextEditingController();
   final _priceController = TextEditingController();
-  File imageCam;
-  String imgBase64;
+   File imageCam;
+   String imgBase64;
   final imagePicker = ImagePicker();
 
   uploadImage() async {

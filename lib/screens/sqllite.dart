@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:language/api/myDataBase.dart';
 import 'package:language/models/taskModel.dart';
 
 class SqlLiteScreen extends StatefulWidget {
@@ -10,17 +11,20 @@ class _SqlLiteScreenState extends State<SqlLiteScreen> {
   final _controller = TextEditingController();
   List<TaskModel> tasks = [];
   TaskModel taskModel;
-  final HelperDb helperDb = HelperDb();
-
-  Future getAllData() async {
-    this.tasks = await helperDb.getAllTask();
-  }
+  DB db;
 
   @override
   void initState() {
     super.initState();
-    helperDb.initDatabase();
+    db = DB();
     getAllData();
+  }
+
+  Future<void> getAllData() async {
+    List<TaskModel> list = await db.getAllTask();
+    setState(() {
+      tasks = list;
+    });
   }
 
   @override
@@ -38,18 +42,13 @@ class _SqlLiteScreenState extends State<SqlLiteScreen> {
           ElevatedButton(
             onPressed: () {
               taskModel = TaskModel(name: _controller.text);
+              db.insert(taskModel);
               _controller.text = "";
-              helperDb.insert(taskModel);
             },
             child: Text("Insert"),
           ),
           ElevatedButton(
-            onPressed: () async {
-              List<TaskModel> list = await helperDb.getAllTask();
-              setState(() {
-                tasks = list;
-              });
-            },
+            onPressed: getAllData,
             child: Text("Show all tasks"),
           ),
           Expanded(

@@ -6,7 +6,6 @@ import 'package:language/components/customDialogue.dart';
 import 'package:language/screens/detailProduct.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
-
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 
 class Home extends StatefulWidget {
@@ -74,10 +73,20 @@ class _HomeState extends State<Home> {
     return Scaffold(
         appBar: AppBar(
           title: Text("API Laravel home"),
-
+          backgroundColor: Colors.lime,
           actions: [
             IconButton(
-                icon: Icon(Icons.add),
+                icon: server
+                    ? Icon(
+                        Icons.add,
+                        size: 30,
+                        color: Colors.yellow,
+                      )
+                    : Icon(
+                        Icons.account_tree_sharp,
+                        size: 30,
+                        color: Colors.red,
+                      ),
                 onPressed: () {
                   Navigator.push(
                     context,
@@ -216,7 +225,7 @@ class _HomeState extends State<Home> {
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Text("Serveur est activé : $server"),
+                      Text("Status server : ${server ?  "ON" : "OFF"}"),
                       ElevatedButton(
                           onPressed: () {
                             testServeur();

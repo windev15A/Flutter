@@ -76,6 +76,8 @@ class _SqlLiteScreenState extends State<SqlLiteScreen> {
           child: Column(
             children: [
               Row(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Expanded(
                     child: TextField(
@@ -105,17 +107,18 @@ class _SqlLiteScreenState extends State<SqlLiteScreen> {
                     padding: EdgeInsets.only(top: 8, bottom: 8),
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(10),
-                      color: Colors.red,
                     ),
-                    child: ElevatedButton(
-                      onPressed: () =>
-                          edit ? editTask(taskModel.id) : addTask(),
-                      child: Icon(
-                        edit ? Icons.edit : Icons.add,
-                        size: 35,
+                    child: InkWell(
+
+                      onTap: () =>
+                            edit ? editTask(taskModel.id) : addTask(),
+                        child: Icon(
+                          edit ? Icons.edit : Icons.add,
+                          size: 35,
+                          color: Colors.orange,
+                        ),
                       ),
                     ),
-                  ),
                 ],
               ),
               Text(

@@ -19,8 +19,8 @@ class _DetailProductState extends State<DetailProduct> {
   final _slugController = TextEditingController();
   final _descriptionController = TextEditingController();
   final _priceController = TextEditingController();
-   File imageCam;
-   String imgBase64;
+  File imageCam;
+  String imgBase64;
   final imagePicker = ImagePicker();
 
   uploadImage() async {
@@ -110,7 +110,13 @@ class _DetailProductState extends State<DetailProduct> {
         title: !mode ? Text("Editer produit") : Text('Nouveau produit'),
         actions: [
           IconButton(
-              icon: Icon(Icons.check),
+              icon: Icon(
+                Icons.done_outline_outlined,
+              ),
+              padding: EdgeInsets.all(15.0),
+              iconSize: 35.0,
+              alignment: Alignment.center,
+              color: Colors.deepPurple,
               onPressed: () {
                 if (_keyForm.currentState.validate()) {
                   addEditProduct(mode, mode ? null : product.id);
@@ -220,14 +226,12 @@ class _DetailProductState extends State<DetailProduct> {
                         return null;
                       },
                       decoration: InputDecoration(
-                        border: OutlineInputBorder(),
-                        hintText: "price product",
-                        suffixText: "€"
-                      ),
+                          border: OutlineInputBorder(),
+                          hintText: "price product",
+                          suffixText: "€"),
                       controller: _priceController,
                       keyboardType: TextInputType.number,
                       inputFormatters: [FilteringTextInputFormatter.digitsOnly],
-
                     ),
                     SizedBox(
                       height: 8.0,
@@ -253,8 +257,6 @@ class _DetailProductState extends State<DetailProduct> {
     );
   }
 }
-
-
 
 // for test
 
@@ -289,12 +291,11 @@ class ImageProduct extends StatelessWidget {
             },
             errorBuilder: (BuildContext context, Object exception,
                 StackTrace stackTrace) {
-              return  Image.asset(
-                      "assets/images/Grace_Hopper.jpg",
-                      height: 200,
-                      fit: BoxFit.fill,
-                    );
-
+              return Image.asset(
+                "assets/images/Grace_Hopper.jpg",
+                height: 200,
+                fit: BoxFit.fill,
+              );
             },
           );
   }
